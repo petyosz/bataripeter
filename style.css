@@ -2,9 +2,11 @@
     --bg: #050505;
     --card-bg: #111111;
     --accent: #ff8c00;
-    --text: #e0e0e0;
+    --accent-hover: #ffa533;
+    --text: #ffffff;
     --text-muted: #a0a0a0;
-    --nav-h: 70px;
+    --nav-bg: rgba(10, 10, 10, 0.95);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -12,50 +14,68 @@ body {
     background-color: var(--bg);
     color: var(--text);
     margin: 0;
-    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-/* Hero szakasz */
+/* Hero Section */
 .hero-section {
-    padding: 80px 20px;
+    padding: 100px 20px 60px;
     text-align: center;
     background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+}
+
+.profile-frame {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 25px;
+    padding: 5px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .profile-img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 3px solid var(--accent);
     object-fit: cover;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.2);
+    filter: grayscale(20%);
 }
 
 h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin: 0;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
 }
 
 .subtitle {
     color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-    font-size: 0.9rem;
+    letter-spacing: 4px;
+    font-weight: 400;
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
+
+.header-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 20px auto;
 }
 
 /* Navigáció */
 .main-nav {
-    background: rgba(17, 17, 17, 0.95);
-    backdrop-filter: blur(10px);
+    background: var(--nav-bg);
+    backdrop-filter: blur(15px);
     border-top: 1px solid #222;
     border-bottom: 1px solid #222;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .nav-menu {
@@ -66,35 +86,36 @@ h1 {
     padding: 0;
 }
 
-.nav-menu > li > a {
+.nav-link {
     display: block;
-    padding: 25px 30px;
+    padding: 25px 35px;
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
-    transition: 0.3s;
+    font-size: 0.95rem;
+    transition: var(--transition);
 }
 
-.nav-menu > li > a:hover {
+.nav-link:hover {
     color: var(--accent);
 }
 
-/* Megatartalom (Dropdown) */
+/* Dropdown / Megamenu */
 .dropdown-content {
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
     background: var(--card-bg);
-    border: 1px solid #333;
+    border: 1px solid #222;
     display: flex;
-    gap: 40px;
-    padding: 30px;
+    gap: 50px;
+    padding: 40px;
     visibility: hidden;
     opacity: 0;
-    transition: 0.4s ease;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    border-radius: 8px;
+    transition: var(--transition);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
 }
 
 .has-submenu:hover .dropdown-content {
@@ -103,73 +124,125 @@ h1 {
     transform: translateX(-50%) translateY(0);
 }
 
+.dropdown-column {
+    min-width: 200px;
+}
+
 .dropdown-column h3 {
     color: var(--accent);
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #333;
-    padding-bottom: 5px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 10px;
 }
 
 .dropdown-column a {
     display: block;
     color: var(--text-muted);
     text-decoration: none;
-    padding: 8px 0;
+    padding: 10px 0;
     font-size: 0.9rem;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 .dropdown-column a:hover {
-    color: white;
-    padding-left: 5px;
+    color: var(--text);
+    padding-left: 8px;
 }
 
-/* Modal stílus */
-.modal {
-    display: none;
+/* Tartalom */
+.content-area {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.intro-box {
+    max-width: 600px;
+    text-align: center;
+    border: 1px solid #111;
+    padding: 40px;
+    border-radius: 20px;
+    background: #080808;
+}
+
+/* PDF Overlay */
+.pdf-overlay {
     position: fixed;
-    z-index: 1000;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
-    animation: fadeIn 0.3s;
+    background: rgba(0, 0, 0, 0.98);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
 }
 
-.modal-content {
-    background: var(--card-bg);
-    margin: 10% auto;
-    padding: 40px;
-    width: 50%;
-    border-radius: 12px;
-    border: 1px solid var(--accent);
-    position: relative;
-    text-align: center;
+.pdf-overlay.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-.close {
+.pdf-container {
+    width: 90%;
+    height: 85%;
+    transform: scale(0.95);
+    transition: var(--transition);
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.pdf-overlay.active .pdf-container {
+    transform: scale(1);
+}
+
+#pdfFrame {
+    width: 100%;
+    height: 100%;
+}
+
+.close-overlay {
     position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 30px;
+    top: 30px;
+    right: 40px;
+    font-size: 40px;
+    color: var(--accent);
     cursor: pointer;
-    color: var(--text-muted);
+    z-index: 2100;
 }
 
-.download-btn {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background: var(--accent);
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
+/* Footer */
+.main-footer {
+    text-align: center;
+    padding: 40px;
+    color: #444;
+    font-size: 0.8rem;
+    border-top: 1px solid #111;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0;} to {opacity: 1;}
+/* Mobil reszponzivitás */
+@media (max-width: 900px) {
+    .dropdown-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        position: static;
+        transform: none;
+        display: none;
+    }
+    .has-submenu:hover .dropdown-content {
+        display: block;
+        transform: none;
+    }
+    h1 { font-size: 2.5rem; }
 }
