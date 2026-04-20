@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bátári Péter | Portfólió</title>
+    <title>Bátári Péter | Szakmai Portfólió</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
@@ -11,38 +11,41 @@
 
     <header class="hero-section">
         <div class="profile-container">
-            <img src="profil.jpg" alt="Bátári Péter" class="profile-img">
+            <div class="profile-frame">
+                <img src="profil.jpg" alt="Bátári Péter" class="profile-img" onerror="this.src='https://via.placeholder.com/150/ff8c00/000000?text=BP'">
+            </div>
             <h1>Bátári Péter</h1>
-            <p class="subtitle">Műszaki Informatikus Technikus Tanuló</p>
+            <p class="subtitle">Műszaki Informatikus Technikus</p>
+            <div class="header-divider"></div>
         </div>
     </header>
 
     <nav class="main-nav">
         <ul class="nav-menu">
-            <li><a href="#">Kezdőlap</a></li>
+            <li><a href="index.html" class="nav-link">Kezdőlap</a></li>
             <li class="has-submenu">
-                <a href="#">Tanulmányok ▾</a>
+                <a href="#" class="nav-link">Tanulmányok <span class="arrow">▾</span></a>
                 <div class="dropdown-content">
                     <div class="dropdown-column">
                         <h3>11. Osztály</h3>
-                        <a href="#" onclick="openModal('Mérési jegyzőkönyv')">Mérési jegyzőkönyv</a>
-                        <a href="#" onclick="openModal('Elektronika')">Elektronika</a>
-                        <a href="#" onclick="openModal('Hálózatkezelés')">Hálózatkezelés</a>
-                        <a href="#" onclick="openModal('Programozás alapjai')">Programozás alapjai</a>
+                        <a href="#" onclick="openPDF('Mérési jegyzőkönyv')">Mérési jegyzőkönyv</a>
+                        <a href="#" onclick="openPDF('Elektronika')">Elektronika</a>
+                        <a href="#" onclick="openPDF('Hálózatkezelés')">Hálózatkezelés</a>
+                        <a href="#" onclick="openPDF('Programozás alapjai')">Programozás alapjai</a>
                     </div>
                     <div class="dropdown-column">
                         <h3>12. Osztály</h3>
-                        <a href="#" onclick="openModal('Adatbázis kezelés')">Adatbázis kezelés</a>
-                        <a href="#" onclick="openModal('Mikrovezérlő programozás')">Mikrovezérlő programozás</a>
-                        <a href="#" onclick="openModal('PLC programozás')">PLC programozás</a>
-                        <a href="#" onclick="openModal('Számítógépes szimuláció')">Számítógépes szimuláció</a>
+                        <a href="#" onclick="openPDF('Adatbázis kezelés')">Adatbázis kezelés</a>
+                        <a href="#" onclick="openPDF('Mikrovezérlő programozás')">Mikrovezérlő programozás</a>
+                        <a href="#" onclick="openPDF('PLC programozás')">PLC programozás</a>
+                        <a href="#" onclick="openPDF('Számítógépes szimuláció')">Számítógépes szimuláció</a>
                     </div>
                     <div class="dropdown-column">
                         <h3>13. Osztály</h3>
-                        <a href="#" onclick="openModal('Digitális áramkörök')">Digitális áramkörök</a>
-                        <a href="#" onclick="openModal('IoT rendszerek')">IoT rendszerek</a>
-                        <a href="#" onclick="openModal('Programfejlesztés')">Programfejlesztés</a>
-                        <a href="#" onclick="openModal('Robottechnika')">Robottechnika</a>
+                        <a href="#" onclick="openPDF('Digitális áramkörök')">Digitális áramkörök</a>
+                        <a href="#" onclick="openPDF('IoT rendszerek')">IoT rendszerek</a>
+                        <a href="#" onclick="openPDF('Programfejlesztés')">Programfejlesztés</a>
+                        <a href="#" onclick="openPDF('Robottechnika')">Robottechnika</a>
                     </div>
                 </div>
             </li>
@@ -50,40 +53,55 @@
     </nav>
 
     <main class="content-area">
-        <div class="welcome-text">
+        <div class="intro-box">
             <h2>Szakmai Dokumentációk</h2>
-            <p>Válassz a fenti menüpontok közül a tantárgyi dokumentációk megtekintéséhez.</p>
+            <p>Üdvözöllek a portfólió oldalamon. A fenti menürendszer segítségével megtekintheted az elmúlt évek során készített szakmai anyaimat és jegyzőkönyveimet.</p>
         </div>
     </main>
 
-    <div id="pdfModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 id="modalTitle">Tantárgy</h2>
-            <div class="pdf-placeholder">
-                <p>Itt jelenik meg a dokumentáció.</p>
-                <a href="#" id="pdfLink" class="download-btn" target="_blank">PDF megnyitása</a>
-            </div>
+    <div id="pdfViewer" class="pdf-overlay">
+        <span class="close-overlay" onclick="closePDF()">&times;</span>
+        <div class="pdf-container">
+            <iframe id="pdfFrame" src="" frameborder="0"></iframe>
         </div>
     </div>
 
+    <footer class="main-footer">
+        <p>&copy; 2026 Bátári Péter | Minden jog fenntartva</p>
+    </footer>
+
     <script>
-        function openModal(subject) {
-            document.getElementById('modalTitle').innerText = subject;
-            document.getElementById('pdfModal').style.display = "block";
-            // Itt adhatod meg később a fájl útvonalát:
-            // document.getElementById('pdfLink').href = "pdfs/" + subject + ".pdf";
+        function openPDF(subject) {
+            const overlay = document.getElementById('pdfViewer');
+            const frame = document.getElementById('pdfFrame');
+            
+            // Fájlnév generálás: pl. "Mérési jegyzőkönyv" -> "meresi_jegyzo_konyv.pdf"
+            // Ékezetmentesítés (egyszerűsített):
+            let fileName = subject.toLowerCase()
+                .replace(/[áàäâ]/g, "a")
+                .replace(/[éèëê]/g, "e")
+                .replace(/[íìïî]/g, "i")
+                .replace(/[óòöőô]/g, "o")
+                .replace(/[úùüűû]/g, "u")
+                .replace(/ /g, "_") + ".pdf";
+            
+            frame.src = "pdfs/" + fileName;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
         }
 
-        function closeModal() {
-            document.getElementById('pdfModal').style.display = "none";
+        function closePDF() {
+            const overlay = document.getElementById('pdfViewer');
+            const frame = document.getElementById('pdfFrame');
+            
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { frame.src = ""; }, 400);
         }
 
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('pdfModal')) {
-                closeModal();
-            }
-        }
+        document.onkeydown = function(evt) {
+            if (evt.key === "Escape") closePDF();
+        };
     </script>
 
 </body>
