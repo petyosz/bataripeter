@@ -5,62 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bátári Péter | Portfólió</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header class="hero-section">
-        <div class="intro-text">
-            <span class="badge">Egyéni Portfólió</span>
+        <div class="profile-container">
+            <img src="profil.jpg" alt="Bátári Péter" class="profile-img">
             <h1>Bátári Péter</h1>
-            <div class="accent-bar"></div>
+            <p class="subtitle">Műszaki Informatikus Technikus Tanuló</p>
         </div>
     </header>
 
-    <nav class="main-navigation">
+    <nav class="main-nav">
         <ul class="nav-menu">
             <li><a href="#">Kezdőlap</a></li>
             <li class="has-submenu">
-                <a href="#">Galéria ▾</a>
-                <ul class="submenu">
-                    <li><a href="#">Fotók</a></li>
-                    <li><a href="#">Videók</a></li>
-                    <li><a href="#">Projektek</a></li>
-                </ul>
+                <a href="#">Tanulmányok ▾</a>
+                <div class="dropdown-content">
+                    <div class="dropdown-column">
+                        <h3>11. Osztály</h3>
+                        <a href="#" onclick="openModal('Mérési jegyzőkönyv')">Mérési jegyzőkönyv</a>
+                        <a href="#" onclick="openModal('Elektronika')">Elektronika</a>
+                        <a href="#" onclick="openModal('Hálózatkezelés')">Hálózatkezelés</a>
+                        <a href="#" onclick="openModal('Programozás alapjai')">Programozás alapjai</a>
+                    </div>
+                    <div class="dropdown-column">
+                        <h3>12. Osztály</h3>
+                        <a href="#" onclick="openModal('Adatbázis kezelés')">Adatbázis kezelés</a>
+                        <a href="#" onclick="openModal('Mikrovezérlő programozás')">Mikrovezérlő programozás</a>
+                        <a href="#" onclick="openModal('PLC programozás')">PLC programozás</a>
+                        <a href="#" onclick="openModal('Számítógépes szimuláció')">Számítógépes szimuláció</a>
+                    </div>
+                    <div class="dropdown-column">
+                        <h3>13. Osztály</h3>
+                        <a href="#" onclick="openModal('Digitális áramkörök')">Digitális áramkörök</a>
+                        <a href="#" onclick="openModal('IoT rendszerek')">IoT rendszerek</a>
+                        <a href="#" onclick="openModal('Programfejlesztés')">Programfejlesztés</a>
+                        <a href="#" onclick="openModal('Robottechnika')">Robottechnika</a>
+                    </div>
+                </div>
             </li>
-            <li><a href="#">Rólam</a></li>
-            <li><a href="#">Kapcsolat</a></li>
         </ul>
     </nav>
 
-    <main>
-        <section class="bio-card">
-            <h2>Üdvözöllek a weboldalamon!</h2>
-            <div class="accent-bar"></div>
-            <p>Ez az oldal a GitHub Pages segítségével jött létre. Itt találhatod meg a legfrissebb munkáimat és projektjeimet.</p>
-        </section>
-
-        <section class="showcase">
-            <h2 class="section-title">Kiemelt Tartalmak</h2>
-            <div class="media-grid">
-                <div class="media-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Minta kép">
-                    <div class="card-info">Első Projektem</div>
-                </div>
-                <div class="media-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Minta kép">
-                    <div class="card-info">Második Projektem</div>
-                </div>
-                <div class="media-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Minta kép">
-                    <div class="card-info">Harmadik Projektem</div>
-                </div>
-            </div>
-        </section>
+    <main class="content-area">
+        <div class="welcome-text">
+            <h2>Szakmai Dokumentációk</h2>
+            <p>Válassz a fenti menüpontok közül a tantárgyi dokumentációk megtekintéséhez.</p>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Bátári Péter. Minden jog fenntartva.</p>
-    </footer>
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Tantárgy</h2>
+            <div class="pdf-placeholder">
+                <p>Itt jelenik meg a dokumentáció.</p>
+                <a href="#" id="pdfLink" class="download-btn" target="_blank">PDF megnyitása</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(subject) {
+            document.getElementById('modalTitle').innerText = subject;
+            document.getElementById('pdfModal').style.display = "block";
+            // Itt adhatod meg később a fájl útvonalát:
+            // document.getElementById('pdfLink').href = "pdfs/" + subject + ".pdf";
+        }
+
+        function closeModal() {
+            document.getElementById('pdfModal').style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('pdfModal')) {
+                closeModal();
+            }
+        }
+    </script>
 
 </body>
 </html>
