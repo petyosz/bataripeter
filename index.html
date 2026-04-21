@@ -71,23 +71,54 @@
     </footer>
 
     <script>
-        function openPDF(subject) {
-            const overlay = document.getElementById('pdfViewer');
-            const frame = document.getElementById('pdfFrame');
-            
-            // Fájlnév generálás: pl. "Mérési jegyzőkönyv" -> "meresi_jegyzo_konyv.pdf"
-            // Ékezetmentesítés (egyszerűsített):
-            let fileName = subject.toLowerCase()
-                .replace(/[áàäâ]/g, "a")
-                .replace(/[éèëê]/g, "e")
-                .replace(/[íìïî]/g, "i")
-                .replace(/[óòöőô]/g, "o")
-                .replace(/[úùüűû]/g, "u")
-                .replace(/ /g, "_") + ".pdf";
-            
-            frame.src = "pdfs/" + fileName;
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; 
+       const pdfMap = {
+        // 11. osztály
+        "Mérési jegyzőkönyv": "BP jegyzokonyv.pdf",
+        "Elektronika": "Batari_Peter_Elektronika.pdf",
+        "Hálózatkezelés": "Batari_Peter_halozatkezeles.pdf",
+        "Programozás alapjai": "Batari_Peter_13B_1.pdf",
+
+        // 12. osztály
+        "Adatbázis kezelés": "Batari_Peter_13B_1.pdf",
+        "Mikrovezérlő programozás": "Batari_Peter_13B_1.pdf",
+        "PLC programozás": "PLC_Portfolio_Batari_Peter.pdf",
+        "Számítógépes szimuláció": "Batari_Peter_szamitosszimu.pdf",
+
+        // 13. osztály
+        "Digitális áramkörök": "Batari_Peter_13B_1.pdf",
+        "IoT rendszerek": "IOT_1.pdf",
+        "Programfejlesztés": "Batari_Peter_13B_programfejlesztes.pdf",
+        "Robottechnika": "Batari_Peter_13B_1.pdf"
+    };
+
+    function openPDF(subject) {
+        const overlay = document.getElementById('pdfViewer');
+        const frame = document.getElementById('pdfFrame');
+
+        const fileName = pdfMap[subject];
+
+        if (!fileName) {
+            alert("Nincs hozzárendelt PDF ehhez: " + subject);
+            return;
+        }
+
+        frame.src = "pdfs/" + fileName;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePDF() {
+        const overlay = document.getElementById('pdfViewer');
+        const frame = document.getElementById('pdfFrame');
+
+        overlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        setTimeout(() => { frame.src = ""; }, 400);
+    }
+
+    document.onkeydown = function(evt) {
+        if (evt.key === "Escape") closePDF();
+    };
         }
 
         function closePDF() {
