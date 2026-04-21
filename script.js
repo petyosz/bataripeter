@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    /* udvozlo animacio */
     const welcomeBox = document.querySelector('.welcome-box');
     if (welcomeBox) {
         welcomeBox.animate([
@@ -11,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
             fill: 'forwards'
         });
     }
+
+    /* iroeffekt */
     const textElement = document.getElementById('typing-text');
     const finalText = "Készítette: Szabó Dávid Róbert";
 
@@ -27,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(type, 700);
     }
+
+    /*gorgos reveal */
     const revealElements = document.querySelectorAll('.gallery-container, .reveal');
 
     const observer = new IntersectionObserver((entries) => {
@@ -46,6 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.15 });
 
     revealElements.forEach(el => observer.observe(el));
+
+    /* lightbox*/
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const captionText = document.getElementById('caption');
