@@ -4,28 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bátári Péter | Szakmai Portfólió</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
+    <!-- ===== HERO ===== -->
     <header class="hero-section">
         <div class="profile-container">
             <div class="profile-frame">
-                <img src="profil.jpg" alt="Bátári Péter" class="profile-img" onerror="this.src='https://via.placeholder.com/150/ff8c00/000000?text=BP'">
+                <img src="profil.jpg" alt="Bátári Péter" class="profile-img"
+                     onerror="this.src='https://via.placeholder.com/150/ff8c00/000000?text=BP'">
             </div>
-            <h1>Batári Péter</h1>
+
+            <h1>Bátári Péter</h1>
             <p class="subtitle">Ipari Informatikai Technikus</p>
+
             <div class="header-divider"></div>
+
+            <!-- typing effect -->
+            <p id="typing-text"></p>
         </div>
     </header>
 
+    <!-- ===== NAV ===== -->
     <nav class="main-nav">
         <ul class="nav-menu">
             <li><a href="index.html" class="nav-link">Kezdőlap</a></li>
+
             <li class="has-submenu">
-                <a href="#" class="nav-link">Tanulmányok <span class="arrow">▾</span></a>
+                <a href="#" class="nav-link">Tanulmányok ▾</a>
+
                 <div class="dropdown-content">
+
                     <div class="dropdown-column">
                         <h3>11. Osztály</h3>
                         <a href="#" onclick="openPDF('Mérési jegyzőkönyv')">Mérési jegyzőkönyv</a>
@@ -33,6 +48,7 @@
                         <a href="#" onclick="openPDF('Hálózatkezelés')">Hálózatkezelés</a>
                         <a href="#" onclick="openPDF('Programozás alapjai')">Programozás alapjai</a>
                     </div>
+
                     <div class="dropdown-column">
                         <h3>12. Osztály</h3>
                         <a href="#" onclick="openPDF('Adatbázis kezelés')">Adatbázis kezelés</a>
@@ -40,6 +56,7 @@
                         <a href="#" onclick="openPDF('PLC programozás')">PLC programozás</a>
                         <a href="#" onclick="openPDF('Számítógépes szimuláció')">Számítógépes szimuláció</a>
                     </div>
+
                     <div class="dropdown-column">
                         <h3>13. Osztály</h3>
                         <a href="#" onclick="openPDF('Digitális áramkörök')">Digitális áramkörök</a>
@@ -47,93 +64,93 @@
                         <a href="#" onclick="openPDF('Programfejlesztés')">Programfejlesztés</a>
                         <a href="#" onclick="openPDF('Robottechnika')">Robottechnika</a>
                     </div>
+
                 </div>
             </li>
         </ul>
     </nav>
 
+    <!-- ===== MAIN CONTENT ===== -->
     <main class="content-area">
-        <div class="intro-box">
+
+        <div class="intro-box reveal">
             <h2>Szakmai Dokumentációk</h2>
-            <p>Üdvözöllek a portfólió oldalamon. A fenti menürendszer segítségével megtekintheted az elmúlt évek során készített szakmai anyagaimat és jegyzőkönyveimet.</p>
+            <p>
+                Üdvözöllek a portfólió oldalamon. A fenti menü segítségével
+                megtekintheted az elmúlt évek során készített szakmai anyagaimat.
+            </p>
         </div>
+
     </main>
 
+    <!-- ===== PDF VIEWER ===== -->
     <div id="pdfViewer" class="pdf-overlay">
         <span class="close-overlay" onclick="closePDF()">&times;</span>
+
         <div class="pdf-container">
-            <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+            <iframe id="pdfFrame"></iframe>
         </div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="main-footer">
-        <p>&copy; 2026 Batári Péter | Minden jog fenntartva</p>
+        <p>&copy; 2026 Bátári Péter</p>
     </footer>
 
+    <!-- ===== PDF SCRIPT ===== -->
     <script>
-       const pdfMap = {
-        // 11. osztály
-        "Mérési jegyzőkönyv": "BP jegyzokonyv.pdf",
-        "Elektronika": "Batari_Peter_Elektronika.pdf",
-        "Hálózatkezelés": "Batari_Peter_halozatkezeles.pdf",
-        "Programozás alapjai": "Batari_Peter_13B_1.pdf",
+        const pdfMap = {
+            "Mérési jegyzőkönyv": "BP jegyzokonyv.pdf",
+            "Elektronika": "Batari_Peter_Elektronika.pdf",
+            "Hálózatkezelés": "Batari_Peter_halozatkezeles.pdf",
+            "Programozás alapjai": "Batari_Peter_13B_1.pdf",
 
-        // 12. osztály
-        "Adatbázis kezelés": "Batari_Peter_13B_1.pdf",
-        "Mikrovezérlő programozás": "Batari_Peter_13B_1.pdf",
-        "PLC programozás": "PLC_Portfolio_Batari_Peter.pdf",
-        "Számítógépes szimuláció": "Batari_Peter_szamitosszimu.pdf",
+            "Adatbázis kezelés": "Batari_Peter_13B_1.pdf",
+            "Mikrovezérlő programozás": "Batari_Peter_13B_1.pdf",
+            "PLC programozás": "PLC_Portfolio_Batari_Peter.pdf",
+            "Számítógépes szimuláció": "Batari_Peter_szamitosszimu.pdf",
 
-        // 13. osztály
-        "Digitális áramkörök": "Batari_Peter_13B_1.pdf",
-        "IoT rendszerek": "IOT_1.pdf",
-        "Programfejlesztés": "Batari_Peter_13B_programfejlesztes.pdf",
-        "Robottechnika": "Batari_Peter_13B_1.pdf"
-    };
+            "Digitális áramkörök": "Batari_Peter_13B_1.pdf",
+            "IoT rendszerek": "IOT_1.pdf",
+            "Programfejlesztés": "Batari_Peter_13B_programfejlesztes.pdf",
+            "Robottechnika": "Batari_Peter_13B_1.pdf"
+        };
 
-    function openPDF(subject) {
-        const overlay = document.getElementById('pdfViewer');
-        const frame = document.getElementById('pdfFrame');
+        function openPDF(subject) {
+            const overlay = document.getElementById('pdfViewer');
+            const frame = document.getElementById('pdfFrame');
 
-        const fileName = pdfMap[subject];
+            const fileName = pdfMap[subject];
 
-        if (!fileName) {
-            alert("Nincs hozzárendelt PDF ehhez: " + subject);
-            return;
-        }
+            if (!fileName) {
+                alert("Nincs PDF hozzárendelve!");
+                return;
+            }
 
-        frame.src = "pdfs/" + fileName;
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closePDF() {
-        const overlay = document.getElementById('pdfViewer');
-        const frame = document.getElementById('pdfFrame');
-
-        overlay.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        setTimeout(() => { frame.src = ""; }, 400);
-    }
-
-    document.onkeydown = function(evt) {
-        if (evt.key === "Escape") closePDF();
-    };
+            frame.src = "pdfs/" + fileName;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closePDF() {
             const overlay = document.getElementById('pdfViewer');
             const frame = document.getElementById('pdfFrame');
-            
+
             overlay.classList.remove('active');
             document.body.style.overflow = 'auto';
-            setTimeout(() => { frame.src = ""; }, 400);
+
+            setTimeout(() => {
+                frame.src = "";
+            }, 300);
         }
 
-        document.onkeydown = function(evt) {
-            if (evt.key === "Escape") closePDF();
-        };
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closePDF();
+        });
     </script>
+
+    <!-- ===== MAIN SCRIPT ===== -->
+    <script src="script.js"></script>
 
 </body>
 </html>
