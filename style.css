@@ -1,10 +1,9 @@
-/* ===== ALAP ===== */
 :root {
     --bg: #050505;
-    --card-bg: #111;
+    --card: #111;
     --accent: #ff8c00;
     --text: #fff;
-    --text-muted: #aaa;
+    --muted: #aaa;
 }
 
 body {
@@ -17,13 +16,12 @@ body {
 /* HERO */
 .hero-section {
     text-align: center;
-    padding: 100px 20px;
-    background: radial-gradient(circle, #1a1a1a, #050505);
+    padding: 90px 20px;
 }
 
 .profile-frame {
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     margin: auto;
     border: 2px solid var(--accent);
     border-radius: 50%;
@@ -35,21 +33,9 @@ body {
     border-radius: 50%;
 }
 
-h1 {
-    font-family: 'Playfair Display';
-    font-size: 3rem;
-}
-
-.subtitle {
-    color: var(--accent);
-    letter-spacing: 3px;
-}
-
 /* NAV */
 .main-nav {
     background: #000;
-    border-top: 1px solid #222;
-    border-bottom: 1px solid #222;
     position: sticky;
     top: 0;
 }
@@ -58,23 +44,29 @@ h1 {
     display: flex;
     justify-content: center;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link {
     padding: 20px 30px;
-    color: white;
     background: none;
     border: none;
+    color: white;
     cursor: pointer;
 }
 
 /* DROPDOWN */
+.has-submenu {
+    position: relative;
+}
+
 .dropdown-content {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    background: #111;
-    padding: 30px;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--card);
+    padding: 25px;
     display: flex;
     gap: 40px;
 
@@ -88,11 +80,13 @@ h1 {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-column a {
     display: block;
-    color: var(--text-muted);
+    color: var(--muted);
+    text-decoration: none;
     padding: 5px 0;
 }
 
@@ -108,17 +102,16 @@ h1 {
 }
 
 .intro-box {
-    border: 1px solid #222;
     padding: 30px;
-    border-radius: 15px;
+    border: 1px solid #222;
+    border-radius: 10px;
 }
 
 /* PDF */
 .pdf-overlay {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    background: black;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
     display: none;
 }
 
@@ -141,4 +134,5 @@ h1 {
 .main-footer {
     text-align: center;
     padding: 20px;
+    color: #666;
 }
