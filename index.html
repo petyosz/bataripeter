@@ -1,126 +1,43 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batári Péter | Szakmai Portfólió</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólió</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="hero-section">
-    <div class="profile-container">
-
-        <div class="profile-frame">
-            <img src="profil.jpg" class="profile-img" alt="profil">
-        </div>
-
-        <h1>Batári Péter</h1>
-        <p class="subtitle">Ipari Informatikai Technikus</p>
-
-        <div class="header-divider"></div>
-        <p id="typing-text"></p>
-
-    </div>
+<header class="hero">
+    <img src="profil.jpg" class="pfp">
+    <h1>Batári Péter</h1>
+    <p>Ipari Informatikai Technikus</p>
 </header>
 
-<nav class="main-nav">
-    <ul class="nav-menu">
+<nav class="nav">
 
-        <li><a href="#" class="nav-link">Kezdőlap</a></li>
+    <button id="menuBtn">Tanulmányok</button>
 
-        <li class="has-submenu">
-            <button class="nav-link dropdown-toggle">Tanulmányok ▾</button>
+    <div id="menu" class="menu">
 
-            <div class="dropdown-content">
+        <a onclick="openPDF('Elektronika')">Elektronika</a>
+        <a onclick="openPDF('Programfejlesztes')">Programfejlesztés</a>
+        <a onclick="openPDF('IoT')">IoT</a>
 
-                <div class="dropdown-column">
-                    <h3>11. Osztály</h3>
-                    <a href="#" onclick="openPDF('Mérési jegyzőkönyv')">Mérési jegyzőkönyv</a>
-                    <a href="#" onclick="openPDF('Elektronika')">Elektronika</a>
-                    <a href="#" onclick="openPDF('Hálózatkezelés')">Hálózatkezelés</a>
-                    <a href="#" onclick="openPDF('Programozás alapjai')">Programozás alapjai</a>
-                </div>
+    </div>
 
-                <div class="dropdown-column">
-                    <h3>12. Osztály</h3>
-                    <a href="#" onclick="openPDF('Adatbázis kezelés')">Adatbázis kezelés</a>
-                    <a href="#" onclick="openPDF('Mikrovezérlő programozás')">Mikrovezérlő programozás</a>
-                    <a href="#" onclick="openPDF('PLC programozás')">PLC programozás</a>
-                    <a href="#" onclick="openPDF('Számítógépes szimuláció')">Számítógépes szimuláció</a>
-                </div>
-
-                <div class="dropdown-column">
-                    <h3>13. Osztály</h3>
-                    <a href="#" onclick="openPDF('Digitális áramkörök')">Digitális áramkörök</a>
-                    <a href="#" onclick="openPDF('IoT rendszerek')">IoT rendszerek</a>
-                    <a href="#" onclick="openPDF('Programfejlesztés')">Programfejlesztés</a>
-                    <a href="#" onclick="openPDF('Robottechnika')">Robottechnika</a>
-                </div>
-
-            </div>
-        </li>
-
-    </ul>
 </nav>
 
-<main class="content-area">
-    <div class="intro-box reveal">
-        <h2>Szakmai Dokumentációk</h2>
-        <p>Üdvözöllek a portfólió oldalamon.</p>
-    </div>
+<main class="main">
+    <h2>Szakmai dokumentumok</h2>
 </main>
 
-<!-- PDF -->
-<div id="pdfViewer" class="pdf-overlay">
-    <span class="close-overlay" onclick="closePDF()">&times;</span>
-    <div class="pdf-container">
-        <iframe id="pdfFrame"></iframe>
-    </div>
+<div id="pdf" class="pdf">
+    <button onclick="closePDF()">X</button>
+    <iframe id="frame"></iframe>
 </div>
-
-<footer class="main-footer">
-    <p>&copy; 2026 Batári Péter</p>
-</footer>
-
-<script>
-const pdfMap = {
-    "Mérési jegyzőkönyv": "BP jegyzokonyv.pdf",
-    "Elektronika": "Batari_Peter_Elektronika.pdf",
-    "Hálózatkezelés": "Batari_Peter_halozatkezeles.pdf",
-    "Programozás alapjai": "Batari_Peter_13B_1.pdf",
-    "Adatbázis kezelés": "Batari_Peter_13B_1.pdf",
-    "Mikrovezérlő programozás": "Batari_Peter_13B_1.pdf",
-    "PLC programozás": "PLC_Portfolio_Batari_Peter.pdf",
-    "Számítógépes szimuláció": "Batari_Peter_szamitosszimu.pdf",
-    "Digitális áramkörök": "Batari_Peter_13B_1.pdf",
-    "IoT rendszerek": "IOT_1.pdf",
-    "Programfejlesztés": "Batari_Peter_13B_programfejlesztes.pdf",
-    "Robottechnika": "Batari_Peter_13B_1.pdf"
-};
-
-function openPDF(name) {
-    const file = pdfMap[name];
-    if (!file) return;
-
-    document.getElementById("pdfFrame").src = "pdfs/" + file;
-    document.getElementById("pdfViewer").classList.add("active");
-    document.body.style.overflow = "hidden";
-}
-
-function closePDF() {
-    document.getElementById("pdfViewer").classList.remove("active");
-    document.body.style.overflow = "auto";
-    setTimeout(() => document.getElementById("pdfFrame").src = "", 300);
-}
-
-document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closePDF();
-});
-</script>
 
 <script src="script.js"></script>
 
