@@ -12,25 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fill: 'forwards'
         });
     }
-
-    /* iroeffekt */
-    const textElement = document.getElementById('typing-text');
-    const finalText = "Készítette: Szabó Dávid Róbert";
-
-    if (textElement) {
-        let index = 0;
-
-        const type = () => {
-            if (index < finalText.length) {
-                textElement.textContent += finalText[index];
-                index++;
-                requestAnimationFrame(() => setTimeout(type, 45));
-            }
-        };
-
-        setTimeout(type, 700);
-    }
-
     /*gorgos reveal */
     const revealElements = document.querySelectorAll('.gallery-container, .reveal');
 
