@@ -1,86 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* udvozlo animacio */
-    const welcomeBox = document.querySelector('.welcome-box');
-    if (welcomeBox) {
-        welcomeBox.animate([
-            { opacity: 0, transform: 'translateY(40px)' },
-            { opacity: 1, transform: 'translateY(0)' }
-        ], {
-            duration: 1000,
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fill: 'forwards'
+    /* ===== PRO MENU ===== */
+    const dropdown = document.querySelector('.has-submenu');
+    const toggle = document.querySelector('.dropdown-toggle');
+
+    if (dropdown && toggle) {
+
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                dropdown.classList.remove('active');
+            }
         });
     }
-    /*gorgos reveal */
-    const revealElements = document.querySelectorAll('.gallery-container, .reveal');
+
+    /* ===== SCROLL REVEAL ===== */
+    const reveal = document.querySelectorAll('.reveal');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.animate([
-                    { opacity: 0, transform: 'translateY(50px)' },
-                    { opacity: 1, transform: 'translateY(0)' }
-                ], {
-                    duration: 800,
-                    easing: 'ease-out',
-                    fill: 'forwards'
-                });
-                observer.unobserve(entry.target);
+                entry.target.style.opacity = 1;
+                entry.target.style.transform = "translateY(0)";
             }
         });
-    }, { threshold: 0.15 });
+    });
 
-    revealElements.forEach(el => observer.observe(el));
-
-    /* lightbox*/
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const captionText = document.getElementById('caption');
-    const closeBtn = document.querySelector('.close-lightbox');
-
-    if (lightbox && lightboxImg) {
-
-        document.querySelectorAll('.gallery-item img').forEach(image => {
-            image.addEventListener('click', () => {
-                lightbox.style.display = "flex";
-
-                lightbox.animate([
-                    { opacity: 0 },
-                    { opacity: 1 }
-                ], {
-                    duration: 300,
-                    fill: 'forwards'
-                });
-
-                lightboxImg.src = image.src;
-                captionText.innerHTML = image.nextElementSibling?.innerHTML || "";
-            });
-        });
-
-        const closeLightbox = () => {
-            lightbox.animate([
-                { opacity: 1 },
-                { opacity: 0 }
-            ], {
-                duration: 250,
-                fill: 'forwards'
-            });
-
-            setTimeout(() => {
-                lightbox.style.display = "none";
-            }, 250);
-        };
-
-        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target !== lightboxImg) closeLightbox();
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") closeLightbox();
-        });
-    }
+    reveal.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = "translateY(40px)";
+        observer.observe(el);
+    });
 
 });
