@@ -1,22 +1,144 @@
-/* PRO MENU */
-.dropdown-toggle {
+/* ===== ALAP ===== */
+:root {
+    --bg: #050505;
+    --card-bg: #111;
+    --accent: #ff8c00;
+    --text: #fff;
+    --text-muted: #aaa;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* HERO */
+.hero-section {
+    text-align: center;
+    padding: 100px 20px;
+    background: radial-gradient(circle, #1a1a1a, #050505);
+}
+
+.profile-frame {
+    width: 160px;
+    height: 160px;
+    margin: auto;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.profile-img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+h1 {
+    font-family: 'Playfair Display';
+    font-size: 3rem;
+}
+
+.subtitle {
+    color: var(--accent);
+    letter-spacing: 3px;
+}
+
+/* NAV */
+.main-nav {
+    background: #000;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+    position: sticky;
+    top: 0;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.nav-link {
+    padding: 20px 30px;
+    color: white;
     background: none;
     border: none;
     cursor: pointer;
 }
 
-.has-submenu:hover .dropdown-content {
-    visibility: hidden;
-    opacity: 0;
-}
-
+/* DROPDOWN */
 .dropdown-content {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #111;
+    padding: 30px;
+    display: flex;
+    gap: 40px;
+
+    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
+    transition: 0.3s;
 }
 
 .has-submenu.active .dropdown-content {
-    visibility: visible;
     opacity: 1;
-    transform: translateX(-50%) translateY(0);
+    visibility: visible;
     pointer-events: auto;
+}
+
+.dropdown-column a {
+    display: block;
+    color: var(--text-muted);
+    padding: 5px 0;
+}
+
+.dropdown-column a:hover {
+    color: white;
+}
+
+/* CONTENT */
+.content-area {
+    display: flex;
+    justify-content: center;
+    padding: 60px;
+}
+
+.intro-box {
+    border: 1px solid #222;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+/* PDF */
+.pdf-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: none;
+}
+
+.pdf-overlay.active {
+    display: flex;
+}
+
+.pdf-container {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+}
+
+#pdfFrame {
+    width: 100%;
+    height: 100%;
+}
+
+/* FOOTER */
+.main-footer {
+    text-align: center;
+    padding: 20px;
 }
