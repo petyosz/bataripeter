@@ -246,3 +246,97 @@ h1 {
     }
     h1 { font-size: 2.5rem; }
 }
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    0% { box-shadow: 0 0 0 rgba(255,140,0,0); }
+    50% { box-shadow: 0 0 25px rgba(255,140,0,0.4); }
+    100% { box-shadow: 0 0 0 rgba(255,140,0,0); }
+}
+
+/* Hero animáció */
+.profile-container {
+    animation: fadeUp 1s ease forwards;
+}
+
+.intro-box {
+    animation: fadeUp 1.2s ease forwards;
+}
+
+/* NAV LINK hover upgrade */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: 0.4s;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 60%;
+}
+
+/* Dropdown link animáció */
+.dropdown-column a {
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.dropdown-column a:nth-child(2) { animation-delay: 0.05s; }
+.dropdown-column a:nth-child(3) { animation-delay: 0.1s; }
+.dropdown-column a:nth-child(4) { animation-delay: 0.15s; }
+
+/* Profil glow */
+.profile-frame:hover {
+    animation: glowPulse 1s ease;
+}
+
+/* ===== PDF OPEN ANIM ===== */
+.pdf-container {
+    opacity: 0;
+    transform: scale(0.9) translateY(40px);
+}
+
+.pdf-overlay.active .pdf-container {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+}
+
+/* CLOSE gomb anim */
+.close-overlay {
+    transition: 0.3s;
+}
+
+.close-overlay:hover {
+    transform: rotate(90deg) scale(1.2);
+}
+
+/* Scroll animáció class */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
