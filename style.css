@@ -1,11 +1,10 @@
 :root {
-    --primary: #00d4ff;
-    --primary-dark: #008eb4;
-    --bg-dark: #0b0f17;
-    --card-bg: #161c2a;
-    --text-light: #e0e0e0;
-    --text-dim: #a0a0a0;
-    --transition: all 0.3s ease;
+    --neon: #00f2ff;
+    --dark-bg: #050505;
+    --card-bg: #0f1218;
+    --text: #e0faff;
+    --font-main: 'JetBrains Mono', monospace;
+    --font-header: 'Orbitron', sans-serif;
 }
 
 * {
@@ -15,185 +14,164 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-light);
-    line-height: 1.6;
+    background-color: var(--dark-bg);
+    color: var(--text);
+    font-family: var(--font-main);
     overflow-x: hidden;
+    background-image: 
+        linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
 }
 
-/* HERO SECTION */
-.hero {
-    position: relative;
+/* Mozgó scanner effekt */
+.scanner-line {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: rgba(0, 242, 255, 0.3);
+    box-shadow: 0 0 15px var(--neon);
+    z-index: 9999;
+    animation: scan 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+/* HEADER */
+.terminal-header {
     text-align: center;
-    padding: 100px 20px;
-    background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=2070') center/cover;
-    border-bottom: 2px solid var(--primary);
+    padding: 80px 20px;
+    border-bottom: 2px solid var(--neon);
 }
 
-.hero-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(11, 15, 23, 0.8), var(--bg-dark));
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-}
-
-.pfp-container {
-    display: inline-block;
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.pfp {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid var(--primary);
-    object-fit: cover;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-}
-
-.hero h1 {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-
-.subtitle {
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-}
-
-.header-line {
-    width: 50px;
-    height: 3px;
-    background: var(--primary);
-    margin: 10px auto 25px;
-}
-
-.btn-primary {
-    padding: 12px 30px;
-    border: 2px solid var(--primary);
-    background: transparent;
-    color: var(--primary);
+.glitch {
+    font-family: var(--font-header);
+    font-size: 3.5rem;
     font-weight: bold;
-    text-transform: uppercase;
+    color: var(--neon);
+    text-shadow: 2px 2px #ff00ea;
+}
+
+.status-text {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    color: var(--neon);
+    letter-spacing: 3px;
+}
+
+/* CYBER BUTTON */
+.cyber-btn {
+    padding: 15px 30px;
+    background: transparent;
+    border: 1px solid var(--neon);
+    color: var(--neon);
+    font-family: var(--font-header);
     cursor: pointer;
-    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
 }
 
-.btn-primary:hover {
-    background: var(--primary);
+.cyber-btn:hover {
+    background: var(--neon);
     color: black;
-    box-shadow: 0 0 15px var(--primary);
+    box-shadow: 0 0 20px var(--neon);
 }
 
-/* MAIN CONTAINER */
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 60px 20px;
-}
-
-.intro {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.intro h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.intro p {
-    color: var(--text-dim);
-    max-width: 600px;
-    margin: auto;
-}
-
-/* ACCORDION */
-.box {
-    margin-bottom: 20px;
-    background: var(--card-bg);
-    border-radius: 8px;
-    border-left: 4px solid var(--primary);
-    transition: var(--transition);
-}
-
-.accordion-btn {
-    width: 100%;
-    padding: 20px;
-    background: none;
-    border: none;
-    color: white;
+/* GRID */
+.grid-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.year-title {
+    font-family: var(--font-header);
+    color: var(--neon);
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 5px solid var(--neon);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* KÁRTYÁK */
+.node-card {
+    background: var(--card-bg);
+    border: 1px solid #222;
+    padding: 30px 20px;
+    position: relative;
     cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 600;
+    transition: 0.3s;
+    overflow: hidden;
 }
 
-.accordion-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
+.node-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent var(--neon) transparent transparent;
 }
 
-.content {
-    display: none;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 10px 0;
+.node-card:hover {
+    border-color: var(--neon);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
 }
 
-.pdf-item {
-    padding: 15px 40px;
-    cursor: pointer;
-    transition: var(--transition);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.node-id {
+    font-size: 0.8rem;
+    color: var(--neon);
+    opacity: 0.5;
+    margin-bottom: 10px;
 }
 
-.pdf-item:last-child { border: none; }
-
-.pdf-item:hover {
-    background: var(--primary);
-    color: black;
-    padding-left: 50px;
+.node-card h3 {
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-/* PDF MODAL */
-.pdf-modal {
+/* OVERLAY */
+.overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: #000;
-    z-index: 1000;
+    background: rgba(0,0,0,0.95);
+    z-index: 10000;
+    padding: 20px;
 }
 
-.pdf-controls {
-    height: 50px;
-    background: #111;
+.overlay-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    border-bottom: 1px solid var(--primary);
-}
-
-.pdf-modal iframe {
-    width: 100%;
-    height: calc(100% - 50px);
-    border: none;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--neon);
+    margin-bottom: 20px;
 }
 
 .close-btn {
-    background: var(--primary);
-    border: none;
+    background: none;
+    border: 1px solid var(--neon);
+    color: var(--neon);
     padding: 5px 15px;
     cursor: pointer;
-    font-weight: bold;
+}
+
+iframe {
+    width: 100%;
+    height: calc(100% - 100px);
+    border: 1px solid #333;
 }
