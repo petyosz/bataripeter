@@ -4,117 +4,355 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Batári Péter | Portfólió</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS STÍLUSOK --- */
+        :root {
+            --bg-dark: #0d1117;
+            --sidebar-bg: #161b22;
+            --accent: #2f81f7;
+            --border: #30363d;
+            --text-main: #c9d1d9;
+            --text-dim: #8b949e;
+            --card-bg: #21262d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            flex-shrink: 0;
+        }
+
+        .profile-box {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .pfp-wrap {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000; /* Ha nincs kép, fekete marad */
+        }
+
+        .pfp-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-box h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CV KÁRTYA */
+        .cv-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .cv-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .cv-card small {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.7rem;
+            display: block;
+        }
+
+        .cv-card span {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
+
+        .class-group {
+            margin-bottom: 50px;
+        }
+
+        .class-group h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+        }
+
+        .class-group h3::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+            margin-left: 15px;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .item {
+            background: var(--sidebar-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .item:hover {
+            background: var(--card-bg);
+            border-color: var(--text-dim);
+        }
+
+        .item-tag {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .item h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* PDF MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+        }
+
+        .modal-bar {
+            height: 50px;
+            background: #161b22;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .close-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        iframe {
+            width: 100%;
+            height: calc(100% - 50px);
+            border: none;
+        }
+    </style>
 </head>
 <body>
 
-<div class="app-wrapper">
     <aside class="sidebar">
-        <div class="profile-section">
-            <div class="image-clip">
-                <img src="profil.jpg" alt="Batári Péter" class="pfp">
+        <div class="profile-box">
+            <div class="pfp-wrap">
+                <img src="profil.jpg" alt="Profilkép">
             </div>
             <h1>Batári Péter</h1>
-            <p class="tag">Ipari Informatikai Technikus</p>
+            <p class="job-title">Ipari Informatikai Technikus</p>
         </div>
 
-        <nav class="side-nav">
-            <div class="cv-highlight" onclick="openPDF('cv')">
-                <span>DOKUMENTUM</span>
-                <strong>ÖNÉLETRAJZ.PDF</strong>
-            </div>
-        </nav>
-        
-        <div class="sidebar-footer">
-            <p>© 2026 Portfólió v2.0</p>
+        <div class="cv-card" onclick="openPDF('cv')">
+            <small>DOKUMENTUM</small>
+            <span>ÖNÉLETRAJZ_2026.PDF</span>
         </div>
     </aside>
 
-    <main class="main-content">
-        <header class="content-header">
-            <h2>DOKUMENTUMTÁR</h2>
-            <div class="line"></div>
-        </header>
-
-        <div class="scroll-area">
-            <section class="class-section">
-                <h3 class="class-title">11. Osztály</h3>
-                <div class="doc-grid">
-                    <div class="doc-card" onclick="openPDF('meresi')">
-                        <span class="doc-type">DOCX</span>
-                        <h4>Mérési jegyzőkönyv</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('elektronika')">
-                        <span class="doc-type">PDF</span>
-                        <h4>Elektronika</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('halo')">
-                        <span class="doc-type">NET</span>
-                        <h4>Hálózatkezelés</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('prog_alap')">
-                        <span class="doc-type">CODE</span>
-                        <h4>Programozás alapok</h4>
-                    </div>
-                </div>
-            </section>
-
-            <section class="class-section">
-                <h3 class="class-title">12. Osztály</h3>
-                <div class="doc-grid">
-                    <div class="doc-card" onclick="openPDF('adatbazis')">
-                        <span class="doc-type">SQL</span>
-                        <h4>Adatbázis kezelés</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('mikro')">
-                        <span class="doc-type">MCU</span>
-                        <h4>Mikrovezérlők</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('plc')">
-                        <span class="doc-type">PLC</span>
-                        <h4>PLC programozás</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('szamitogep')">
-                        <span class="doc-type">SIM</span>
-                        <h4>Szimuláció</h4>
-                    </div>
-                </div>
-            </section>
-
-            <section class="class-section">
-                <h3 class="class-title">13. Osztály</h3>
-                <div class="doc-grid">
-                    <div class="doc-card" onclick="openPDF('digitalis')">
-                        <span class="doc-type">DIG</span>
-                        <h4>Digitális áramkörök</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('iot')">
-                        <span class="doc-type">IOT</span>
-                        <h4>IoT rendszerek</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('prog')">
-                        <span class="doc-type">APP</span>
-                        <h4>Programfejlesztés</h4>
-                    </div>
-                    <div class="doc-card" onclick="openPDF('robot')">
-                        <span class="doc-type">ROB</span>
-                        <h4>Robottechnika</h4>
-                    </div>
-                </div>
-            </section>
+    <main class="main">
+        <div class="section-header">
+            <h2>PROJEKT DOKUMENTÁCIÓK</h2>
         </div>
+
+        <section class="class-group">
+            <h3>11. Osztály</h3>
+            <div class="grid">
+                <div class="item" onclick="openPDF('meresi')">
+                    <span class="item-tag">MÉRÉS</span>
+                    <h4>Mérési jegyzőkönyv</h4>
+                </div>
+                <div class="item" onclick="openPDF('elektronika')">
+                    <span class="item-tag">ELK</span>
+                    <h4>Elektronika</h4>
+                </div>
+                <div class="item" onclick="openPDF('halo')">
+                    <span class="item-tag">NET</span>
+                    <h4>Hálózatkezelés</h4>
+                </div>
+                <div class="item" onclick="openPDF('prog_alap')">
+                    <span class="item-tag">PROG</span>
+                    <h4>Programozás alapjai</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="class-group">
+            <h3>12. Osztály</h3>
+            <div class="grid">
+                <div class="item" onclick="openPDF('adatbazis')">
+                    <span class="item-tag">SQL</span>
+                    <h4>Adatbázis kezelés</h4>
+                </div>
+                <div class="item" onclick="openPDF('mikro')">
+                    <span class="item-tag">MCU</span>
+                    <h4>Mikrovezérlők</h4>
+                </div>
+                <div class="item" onclick="openPDF('plc')">
+                    <span class="item-tag">PLC</span>
+                    <h4>PLC programozás</h4>
+                </div>
+                <div class="item" onclick="openPDF('szamitogep')">
+                    <span class="item-tag">SIM</span>
+                    <h4>Számítógépes szimuláció</h4>
+                </div>
+            </div>
+        </section>
+
+        <section class="class-group">
+            <h3>13. Osztály</h3>
+            <div class="grid">
+                <div class="item" onclick="openPDF('digitalis')">
+                    <span class="item-tag">DIGI</span>
+                    <h4>Digitális áramkörök</h4>
+                </div>
+                <div class="item" onclick="openPDF('iot')">
+                    <span class="item-tag">IOT</span>
+                    <h4>IoT rendszerek</h4>
+                </div>
+                <div class="item" onclick="openPDF('prog')">
+                    <span class="item-tag">CODE</span>
+                    <h4>Programfejlesztés</h4>
+                </div>
+                <div class="item" onclick="openPDF('robot')">
+                    <span class="item-tag">ROB</span>
+                    <h4>Robottechnika</h4>
+                </div>
+            </div>
+        </section>
     </main>
-</div>
 
-<div id="viewer" class="pdf-viewer">
-    <div class="viewer-bar">
-        <span id="pdf-name">Betöltés...</span>
-        <button onclick="closePDF()">BEZÁRÁS ✕</button>
+    <div id="pdfModal" class="modal">
+        <div class="modal-bar">
+            <span id="pdfTitle" style="font-size: 0.8rem; font-family: 'Roboto Mono';">Fájl megnyitása...</span>
+            <button class="close-btn" onclick="closePDF()">BEZÁRÁS ✕</button>
+        </div>
+        <iframe id="pdfFrame"></iframe>
     </div>
-    <iframe id="pdf-frame"></iframe>
-</div>
 
-<script src="script.js"></script>
+    <script>
+        const pdfMap = {
+            cv: "BP_cv.pdf",
+            meresi: "BP_jegyzokonyv.pdf",
+            elektronika: "BP_elektronika.pdf",
+            halo: "BP_halozatkezeles.pdf",
+            prog_alap: "BP_program_alapjai.pdf",
+            adatbazis: "BP_adatbazis.pdf",
+            mikro: "BP_mikrovezerlo.pdf",
+            plc: "BP_plc.pdf",
+            szamitogep: "BP_szimulacio.pdf",
+            digitalis: "BP_digitalis.pdf",
+            iot: "BP_iot.pdf",
+            prog: "BP_programfejlesztes.pdf",
+            robot: "BP_robot.pdf"
+        };
+
+        function openPDF(key) {
+            const file = pdfMap[key];
+            if (!file) {
+                alert("Hiba: A fájl neve nincs definiálva a kódban.");
+                return;
+            }
+            
+            // Itt a "pdfs/" mappa az, ahol a fájljaidnak lenniük kell
+            const filePath = "pdfs/" + file;
+            
+            document.getElementById("pdfTitle").innerText = "DOKUMENTUM: " + file;
+            document.getElementById("pdfFrame").src = filePath;
+            document.getElementById("pdfModal").style.display = "block";
+        }
+
+        function closePDF() {
+            document.getElementById("pdfModal").style.display = "none";
+            document.getElementById("pdfFrame").src = "";
+        }
+
+        // ESC gombra bezárás
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closePDF();
+        });
+    </script>
 </body>
 </html>
