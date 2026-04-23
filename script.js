@@ -1,63 +1,38 @@
-const subjectsData = {
-    11: [
-        {name:"Mérési jegyzőkönyv", key:"meresi"},
-        {name:"Elektronika", key:"elektronika"},
-        {name:"Hálózatkezelés", key:"halo"},
-        {name:"Programozás alapjai", key:"prog_alap"}
-    ],
-    12: [
-        {name:"Adatbázis kezelés", key:"adatbazis"},
-        {name:"Mikrovezérlő programozás", key:"mikro"},
-        {name:"PLC programozás", key:"plc"},
-        {name:"Számítógépes szimuláció", key:"szamitogep"}
-    ],
-    13: [
-        {name:"Digitális áramkörök", key:"digitalis"},
-        {name:"IoT rendszerek", key:"iot"},
-        {name:"Programfejlesztés", key:"prog"},
-        {name:"Robottechnika", key:"robot"}
-    ]
-};
+/* ACCORDION */
+document.querySelectorAll(".accordion-btn").forEach(btn=>{
+    btn.onclick = () => {
+        const content = btn.nextElementSibling;
 
-const pdfMap = {
-    meresi:"",
-    elektronika:"",
-    halo:"",
-    prog_alap:"",
-    adatbazis:"",
-    mikro:"",
-    plc:"",
-    szamitogep:"",
-    digitalis:"",
-    iot:"",
-    prog:"",
-    robot:""
-};
-
-document.getElementById("yearSelect").addEventListener("change", function(){
-    const year = this.value;
-    const container = document.getElementById("subjects");
-
-    container.innerHTML = "";
-
-    if(!subjectsData[year]) return;
-
-    subjectsData[year].forEach(sub=>{
-        const div = document.createElement("div");
-        div.className = "item";
-        div.textContent = sub.name;
-
-        div.onclick = () => openPDF(sub.key);
-
-        container.appendChild(div);
-    });
+        content.style.display =
+            content.style.display === "block" ? "none" : "block";
+    };
 });
+
+/* PDF MAP */
+const pdfMap = {
+    cv: "BP_cv.pdf",
+
+    meresi: "BP_jegyzokonyv.pdf",
+    elektronika: "BP_elektronika.pdf",
+    halo: "BP_halozatkezeles.pdf",
+    prog_alap: "BP_program_alapjai.pdf",
+
+    adatbazis: "",
+    mikro: "",
+    plc: "BP_plc.pdf",
+    szamitogep: "BP_szamitoszimulacio.pdf",
+
+    digitalis: "",
+    iot: "BP_iot.pdf",
+    prog: "BP_programfejlesztes.pdf",
+    robot: ""
+};
 
 function openPDF(key){
     const file = pdfMap[key];
 
     if(!file){
-        alert("PDF még nincs beállítva!");
+        alert("Ez a PDF még nincs feltöltve!");
         return;
     }
 
@@ -69,3 +44,8 @@ function closePDF(){
     document.getElementById("pdfViewer").style.display = "none";
     document.getElementById("frame").src = "";
 }
+
+/* ESC bezárás */
+document.addEventListener("keydown",(e)=>{
+    if(e.key === "Escape") closePDF();
+});
