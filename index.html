@@ -11,65 +11,68 @@
 <body>
 
 <header class="hero">
-    <img src="profil.jpg" class="pfp">
-    <h1>Batári Péter</h1>
-    <p>Ipari Informatikai Technikus</p>
+    <div class="glass">
 
-    <button class="cv-btn" onclick="openPDF('cv')">Önéletrajz</button>
+        <img src="profil.jpg" class="pfp">
+
+        <h1>Batári Péter</h1>
+        <p>Ipari Informatikai Technikus</p>
+
+        <button class="cv-btn" onclick="openPDF('cv')">
+            Önéletrajz megnyitása
+        </button>
+
+    </div>
 </header>
 
 <main class="container">
 
     <section class="intro">
-        <h2>Portfólió</h2>
+        <h2>Bemutatkozás</h2>
         <p>
-            Ez a portfólió az iskolai éveim során készült munkáimat tartalmazza.
-            Az egyes évfolyamok lenyithatók, és azon belül megtalálhatók a tantárgyakhoz tartozó dokumentumok.
+            Ez a portfólió az iskolai éveim során készült szakmai munkákat,
+            projektekhez kapcsolódó dokumentumokat és gyakorlati feladatokat tartalmazza.
         </p>
     </section>
 
-    <!-- 11 -->
+    <!-- ACCORDIONS -->
     <div class="accordion">
-        <button class="accordion-btn">11. évfolyam</button>
-        <div class="accordion-content">
 
-            <div onclick="openPDF('BP_jegyzokonyv')">Mérési jegyzőkönyv</div>
-            <div onclick="openPDF('BP_elektronika')">Elektronika</div>
-            <div onclick="openPDF('BP_halozat')">Hálózatkezelés</div>
-            <div onclick="openPDF('BP_progam_alapjai')">Programozás alapjai</div>
-
+        <div class="item">
+            <button class="acc-btn">11. évfolyam</button>
+            <div class="acc-content">
+                <div onclick="openPDF('meresi')">Mérési jegyzőkönyv</div>
+                <div onclick="openPDF('elektronika')">Elektronika</div>
+                <div onclick="openPDF('halo')">Hálózatkezelés</div>
+                <div onclick="openPDF('prog_alap')">Programozás alapjai</div>
+            </div>
         </div>
-    </div>
 
-    <!-- 12 -->
-    <div class="accordion">
-        <button class="accordion-btn">12. évfolyam</button>
-        <div class="accordion-content">
-
-            <div onclick="openPDF('BP_adatbazislezeées')">Adatbázis kezelés</div>
-            <div onclick="openPDF('BP_mikrovezerlo')">Mikrovezérlő programozás</div>
-            <div onclick="openPDF('BP_plc')">PLC programozás</div>
-            <div onclick="openPDF('szamitogep')">Számítógépes szimuláció</div>
-
+        <div class="item">
+            <button class="acc-btn">12. évfolyam</button>
+            <div class="acc-content">
+                <div onclick="openPDF('adatbazis')">Adatbázis kezelés</div>
+                <div onclick="openPDF('mikro')">Mikrovezérlő programozás</div>
+                <div onclick="openPDF('plc')">PLC programozás</div>
+                <div onclick="openPDF('szamitogep')">Számítógépes szimuláció</div>
+            </div>
         </div>
-    </div>
 
-    <!-- 13 -->
-    <div class="accordion">
-        <button class="accordion-btn">13. évfolyam</button>
-        <div class="accordion-content">
-
-            <div onclick="openPDF('digitalis')">Digitális áramkörök</div>
-            <div onclick="openPDF('iot')">IoT rendszerek</div>
-            <div onclick="openPDF('prog')">Programfejlesztés</div>
-            <div onclick="openPDF('robot')">Robottechnika</div>
-
+        <div class="item">
+            <button class="acc-btn">13. évfolyam</button>
+            <div class="acc-content">
+                <div onclick="openPDF('digitalis')">Digitális áramkörök</div>
+                <div onclick="openPDF('iot')">IoT rendszerek</div>
+                <div onclick="openPDF('prog')">Programfejlesztés</div>
+                <div onclick="openPDF('robot')">Robottechnika</div>
+            </div>
         </div>
+
     </div>
 
 </main>
 
-<!-- PDF -->
+<!-- PDF VIEWER -->
 <div id="pdfViewer" class="pdf">
     <button onclick="closePDF()">✕</button>
     <iframe id="frame"></iframe>
