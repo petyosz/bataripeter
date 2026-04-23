@@ -1,15 +1,14 @@
-/* ACCORDION (smooth + bugmentes) */
-document.querySelectorAll(".acc-btn").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-        const item = btn.parentElement;
+/* ACCORDION FIX */
+function toggle(btn){
+    const content = btn.nextElementSibling;
 
-        document.querySelectorAll(".item").forEach(i=>{
-            if(i !== item) i.classList.remove("active");
-        });
-
-        item.classList.toggle("active");
+    document.querySelectorAll(".content").forEach(c=>{
+        if(c !== content) c.style.display = "none";
     });
-});
+
+    content.style.display =
+        content.style.display === "block" ? "none" : "block";
+}
 
 /* PDF MAP */
 const pdfMap = {
@@ -35,16 +34,16 @@ function openPDF(key){
     const file = pdfMap[key];
 
     if(!file){
-        alert("Ez a dokumentum még nincs feltöltve!");
+        alert("Ez a PDF még nincs feltöltve.");
         return;
     }
 
     document.getElementById("frame").src = "pdfs/" + file;
-    document.getElementById("pdfViewer").style.display = "block";
+    document.getElementById("pdf").style.display = "block";
 }
 
 function closePDF(){
-    document.getElementById("pdfViewer").style.display = "none";
+    document.getElementById("pdf").style.display = "none";
     document.getElementById("frame").src = "";
 }
 
