@@ -27,3 +27,6 @@ function closePDF(){
     document.getElementById("pdf").classList.remove("show");
     document.getElementById("frame").src = "";
 }
+document.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape") closePDF();
+});
