@@ -1,70 +1,84 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Batári Péter | Portfólió</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batári Péter | Ipari Informatikai Portfólió</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header class="hero">
-    <img src="profil.jpg" class="pfp">
-    <h1>Batári Péter</h1>
-    <p>Ipari Informatikai Technikus</p>
-
-    <button onclick="openPDF('cv')" class="btn">Önéletrajz megnyitása</button>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="pfp-container">
+            <img src="profil.jpg" alt="Batári Péter" class="pfp">
+        </div>
+        <h1>Batári Péter</h1>
+        <p class="subtitle">Ipari Informatikai Technikus</p>
+        <div class="header-line"></div>
+        <button onclick="openPDF('cv')" class="btn-primary">Önéletrajz megtekintése</button>
+    </div>
 </header>
 
 <main class="container">
-
     <section class="intro">
-        <h2>Portfólió</h2>
+        <h2>Szakmai Portfólió</h2>
         <p>
-            Ez a weboldal az iskolai tanulmányaim során készült dokumentumokat és projektekhez kapcsolódó anyagokat tartalmazza.
-            Az évfolyamok szerint csoportosított tantárgyakban találhatók meg a PDF fájlok.
+            Üdvözlöm! Ezen a felületen az eddigi tanulmányaim során elvégzett projekteket, 
+            mérési jegyzőkönyveket és szakmai dokumentációkat gyűjtöttem össze, évfolyamokra bontva.
         </p>
     </section>
 
-    <!-- 11 -->
-    <section class="box">
-        <button onclick="toggle(this)">11. évfolyam</button>
-        <div class="content">
-            <div onclick="openPDF('meresi')">Mérési jegyzőkönyv</div>
-            <div onclick="openPDF('elektronika')">Elektronika</div>
-            <div onclick="openPDF('halo')">Hálózatkezelés</div>
-            <div onclick="openPDF('prog_alap')">Programozás alapjai</div>
-        </div>
-    </section>
+    <div class="accordion">
+        <section class="box">
+            <button class="accordion-btn" onclick="toggle(this)">
+                <span>11. évfolyam</span>
+                <span class="icon">+</span>
+            </button>
+            <div class="content">
+                <div class="pdf-item" onclick="openPDF('meresi')">Mérési jegyzőkönyvek gyűjteménye</div>
+                <div class="pdf-item" onclick="openPDF('elektronika')">Analóg és digitális elektronika alapjai</div>
+                <div class="pdf-item" onclick="openPDF('halo')">Hálózati infrastruktúrák I.</div>
+                <div class="pdf-item" onclick="openPDF('prog_alap')">Algoritmusok és programozási alapok</div>
+            </div>
+        </section>
 
-    <!-- 12 -->
-    <section class="box">
-        <button onclick="toggle(this)">12. évfolyam</button>
-        <div class="content">
-            <div onclick="openPDF('adatbazis')">Adatbázis kezelés</div>
-            <div onclick="openPDF('mikro')">Mikrovezérlő programozás</div>
-            <div onclick="openPDF('plc')">PLC programozás</div>
-            <div onclick="openPDF('szamitogep')">Számítógépes szimuláció</div>
-        </div>
-    </section>
+        <section class="box">
+            <button class="accordion-btn" onclick="toggle(this)">
+                <span>12. évfolyam</span>
+                <span class="icon">+</span>
+            </button>
+            <div class="content">
+                <div class="pdf-item" onclick="openPDF('adatbazis')">Relációs adatbázis-kezelés (SQL)</div>
+                <div class="pdf-item" onclick="openPDF('mikro')">Mikrovezérlők és beágyazott rendszerek</div>
+                <div class="pdf-item" onclick="openPDF('plc')">Ipari automatizálás - PLC programozás</div>
+                <div class="pdf-item" onclick="openPDF('szamitogep')">Rendszerszimulációk és modellezés</div>
+            </div>
+        </section>
 
-    <!-- 13 -->
-    <section class="box">
-        <button onclick="toggle(this)">13. évfolyam</button>
-        <div class="content">
-            <div onclick="openPDF('digitalis')">Digitális áramkörök</div>
-            <div onclick="openPDF('iot')">IoT rendszerek</div>
-            <div onclick="openPDF('prog')">Programfejlesztés</div>
-            <div onclick="openPDF('robot')">Robottechnika</div>
-        </div>
-    </section>
-
+        <section class="box">
+            <button class="accordion-btn" onclick="toggle(this)">
+                <span>13. évfolyam</span>
+                <span class="icon">+</span>
+            </button>
+            <div class="content">
+                <div class="pdf-item" onclick="openPDF('digitalis')">Komplex digitális áramkörök tervezése</div>
+                <div class="pdf-item" onclick="openPDF('iot')">Ipari IoT és felhő alapú rendszerek</div>
+                <div class="pdf-item" onclick="openPDF('prog')">Objektumorientált szoftverfejlesztés</div>
+                <div class="pdf-item" onclick="openPDF('robot')">Ipari robottechnika és manipulátorok</div>
+            </div>
+        </section>
+    </div>
 </main>
 
-<!-- PDF VIEWER -->
-<div id="pdf" class="pdf">
-    <button onclick="closePDF()">Bezárás ✕</button>
+<div id="pdf-viewer" class="pdf-modal">
+    <div class="pdf-controls">
+        <span id="pdf-title">Dokumentum megtekintése</span>
+        <button onclick="closePDF()" class="close-btn">Bezárás ✕</button>
+    </div>
     <iframe id="frame"></iframe>
 </div>
 
