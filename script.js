@@ -1,32 +1,36 @@
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
-
-menuBtn.onclick = () => {
-    menu.classList.toggle("active");
-};
-
 const pdfMap = {
-    "Elektronika": "Batari_Peter_Elektronika.pdf",
-    "Programfejlesztes": "Batari_Peter_programozasalapjai.pdf",
-    "IoT": "IOT_1.pdf"
+    meresi: "",
+    elektronika: "",
+    halo: "",
+    prog_alap: "",
+    adatbazis: "",
+    mikro: "",
+    plc: "",
+    szamitogep: "",
+    digitalis: "",
+    iot: "",
+    prog: "",
+    robot: ""
 };
 
-function openPDF(name){
-    const file = pdfMap[name];
+function openPDF(key){
+    const file = pdfMap[key];
 
     if(!file){
-        alert("Nincs PDF!");
+        alert("PDF még nincs beállítva!");
         return;
     }
 
     document.getElementById("frame").src = "pdfs/" + file;
-    document.getElementById("pdf").classList.add("show");
+    document.getElementById("pdfViewer").style.display = "block";
 }
 
 function closePDF(){
-    document.getElementById("pdf").classList.remove("show");
+    document.getElementById("pdfViewer").style.display = "none";
     document.getElementById("frame").src = "";
 }
-document.addEventListener("keydown", (e)=>{
+
+/* ESC bezárás */
+document.addEventListener("keydown",(e)=>{
     if(e.key === "Escape") closePDF();
 });
