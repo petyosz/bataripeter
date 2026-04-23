@@ -5,7 +5,7 @@ const pdfMap = {
     halo: "BP_halozatkezeles.pdf",
     prog_alap: "BP_program_alapjai.pdf",
     adatbazis: "BP_adatbazis.pdf",
-    mikro: "BP_mikrovezérlo.pdf",
+    mikro: "BP_mikrovezerlo.pdf",
     plc: "BP_plc.pdf",
     szamitogep: "BP_szimulacio.pdf",
     digitalis: "BP_digitalis.pdf",
@@ -15,21 +15,45 @@ const pdfMap = {
 };
 
 function openPDF(key) {
-    const file = pdfMap[key];
-    if (!file) {
-        alert("A dokumentum hamarosan elérhető lesz.");
+    const fileName = pdfMap[key];
+    const viewer = document.getElementById("viewer");
+    const frame = document.getElementById("pdf-frame");
+    const title = document.getElementById("pdf-name");
+
+    if (!fileName) {
+        alert("A kért fájl jelenleg nem elérhető.");
         return;
     }
-    document.getElementById("pdf-name").innerText = "FÁJL: " + file;
-    document.getElementById("pdf-frame").src = "pdfs/" + file;
-    document.getElementById("viewer").style.display = "block";
+
+    const filePath = "pdfs/" + fileName;
+
+    title.innerText = "Nézet: " + fileName;
+    frame.src = filePath;
+    viewer.style.display = "block";
+    
+    document.body.style.overflow = "hidden";
 }
 
 function closePDF() {
-    document.getElementById("viewer").style.display = "none";
-    document.getElementById("pdf-frame").src = "";
+    const viewer = document.getElementById("viewer");
+    const frame = document.getElementById("pdf-frame");
+
+    viewer.style.display = "none";
+    frame.src = "";
+    document.body.style.overflow = "auto";
 }
 
+// ESC gombra záródjon be
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closePDF();
+    if (e.key === "Escape") {
+        closePDF();
+    }
 });
+
+// Háttérre kattintva is záródjon be
+window.onclick = function(event) {
+    const viewer = document.getElementById("viewer");
+    if (event.target == viewer) {
+        closePDF();
+    }
+}
