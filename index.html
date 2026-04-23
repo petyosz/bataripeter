@@ -3,99 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BATARI_PETER // PORTFOLIO</title>
+    <title>Batári Péter | Portfólió</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="scanner-line"></div>
-
-<header class="terminal-header">
-    <div class="glitch-wrapper">
-        <h1 class="glitch" data-text="BATÁRI PÉTER">BATÁRI PÉTER</h1>
-    </div>
-    <p class="status-text"> > RENDSZER: IPARI INFORMATIKAI TECHNIKUS_</p>
-    <button onclick="openPDF('cv')" class="cyber-btn">
-        <span class="btn-content">ÖNÉLETRAJZ.EXE</span>
-        <span class="btn-glitch"></span>
-    </button>
-</header>
-
-<main class="grid-container">
-    
-    <div class="year-column">
-        <h2 class="year-title">LEVEL_11</h2>
-        <div class="card-grid">
-            <div class="node-card" onclick="openPDF('meresi')">
-                <div class="node-id">01</div>
-                <h3>Mérési jegyzőkönyv</h3>
+<div class="app-wrapper">
+    <aside class="sidebar">
+        <div class="profile-section">
+            <div class="image-clip">
+                <img src="profil.jpg" alt="Batári Péter" class="pfp">
             </div>
-            <div class="node-card" onclick="openPDF('elektronika')">
-                <div class="node-id">02</div>
-                <h3>Elektronika</h3>
-            </div>
-            <div class="node-card" onclick="openPDF('halo')">
-                <div class="node-id">03</div>
-                <h3>Hálózatkezelés</h3>
-            </div>
-            <div class="node-card" onclick="openPDF('prog_alap')">
-                <div class="node-id">04</div>
-                <h3>Programozás alapok</h3>
-            </div>
+            <h1>Batári Péter</h1>
+            <p class="tag">Ipari Informatikai Technikus</p>
         </div>
-    </div>
 
-    <div class="year-column">
-        <h2 class="year-title">LEVEL_12</h2>
-        <div class="card-grid">
-            <div class="node-card" onclick="openPDF('adatbazis')">
-                <div class="node-id">05</div>
-                <h3>Adatbázis kezelés</h3>
+        <nav class="side-nav">
+            <div class="cv-highlight" onclick="openPDF('cv')">
+                <span>DOKUMENTUM</span>
+                <strong>ÖNÉLETRAJZ.PDF</strong>
             </div>
-            <div class="node-card" onclick="openPDF('mikro')">
-                <div class="node-id">06</div>
-                <h3>Mikrovezérlők</h3>
-            </div>
-            <div class="node-card" onclick="openPDF('plc')">
-                <div class="node-id">07</div>
-                <h3>PLC programozás</h3>
-            </div>
-            <div class="node-card" onclick="openPDF('szamitogep')">
-                <div class="node-id">08</div>
-                <h3>Szimuláció</h3>
-            </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>© 2026 Portfólió v2.0</p>
         </div>
-    </div>
+    </aside>
 
-    <div class="year-column">
-        <h2 class="year-title">LEVEL_13</h2>
-        <div class="card-grid">
-            <div class="node-card" onclick="openPDF('digitalis')">
-                <div class="node-id">09</div>
-                <h3>Digitális áramkörök</h3>
-            </div>
-            <div class="node-card" onclick="openPDF('iot')">
-                <div class="node-id">10</div>
-                <h3>IoT rendszerek</h3>
-            </div>
-            <div class="node-card" onclick="openPDF('prog')">
-                <div class="node-id">11</div>
-                <h3>Programfejlesztés</h3>
-            </div>
-            <div class="node-card" onclick="openPDF('robot')">
-                <div class="node-id">12</div>
-                <h3>Robottechnika</h3>
-            </div>
+    <main class="main-content">
+        <header class="content-header">
+            <h2>DOKUMENTUMTÁR</h2>
+            <div class="line"></div>
+        </header>
+
+        <div class="scroll-area">
+            <section class="class-section">
+                <h3 class="class-title">11. Osztály</h3>
+                <div class="doc-grid">
+                    <div class="doc-card" onclick="openPDF('meresi')">
+                        <span class="doc-type">DOCX</span>
+                        <h4>Mérési jegyzőkönyv</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('elektronika')">
+                        <span class="doc-type">PDF</span>
+                        <h4>Elektronika</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('halo')">
+                        <span class="doc-type">NET</span>
+                        <h4>Hálózatkezelés</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('prog_alap')">
+                        <span class="doc-type">CODE</span>
+                        <h4>Programozás alapok</h4>
+                    </div>
+                </div>
+            </section>
+
+            <section class="class-section">
+                <h3 class="class-title">12. Osztály</h3>
+                <div class="doc-grid">
+                    <div class="doc-card" onclick="openPDF('adatbazis')">
+                        <span class="doc-type">SQL</span>
+                        <h4>Adatbázis kezelés</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('mikro')">
+                        <span class="doc-type">MCU</span>
+                        <h4>Mikrovezérlők</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('plc')">
+                        <span class="doc-type">PLC</span>
+                        <h4>PLC programozás</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('szamitogep')">
+                        <span class="doc-type">SIM</span>
+                        <h4>Szimuláció</h4>
+                    </div>
+                </div>
+            </section>
+
+            <section class="class-section">
+                <h3 class="class-title">13. Osztály</h3>
+                <div class="doc-grid">
+                    <div class="doc-card" onclick="openPDF('digitalis')">
+                        <span class="doc-type">DIG</span>
+                        <h4>Digitális áramkörök</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('iot')">
+                        <span class="doc-type">IOT</span>
+                        <h4>IoT rendszerek</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('prog')">
+                        <span class="doc-type">APP</span>
+                        <h4>Programfejlesztés</h4>
+                    </div>
+                    <div class="doc-card" onclick="openPDF('robot')">
+                        <span class="doc-type">ROB</span>
+                        <h4>Robottechnika</h4>
+                    </div>
+                </div>
+            </section>
         </div>
-    </div>
+    </main>
+</div>
 
-</main>
-
-<div id="pdf-overlay" class="overlay">
-    <div class="overlay-header">
-        <span id="file-name">DOCUMENT_VIEWER</span>
-        <button onclick="closePDF()" class="close-btn">QUIT [X]</button>
+<div id="viewer" class="pdf-viewer">
+    <div class="viewer-bar">
+        <span id="pdf-name">Betöltés...</span>
+        <button onclick="closePDF()">BEZÁRÁS ✕</button>
     </div>
     <iframe id="pdf-frame"></iframe>
 </div>
