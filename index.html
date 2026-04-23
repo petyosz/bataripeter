@@ -10,84 +10,40 @@
 
 <body>
 
-<header class="header">
-    <div class="overlay"></div>
+<header class="hero">
+    <img src="profil.jpg" class="pfp">
 
-    <div class="header-content">
-        <img src="profil.jpg" class="pfp">
-
-        <h1>Batári Péter</h1>
-        <p>Ipari Informatikai Technikus</p>
-    </div>
+    <h1>Batári Péter</h1>
+    <p>Ipari Informatikai Technikus</p>
 </header>
 
 <main class="container">
 
-    <h2 class="title">Portfólió</h2>
+    <section class="about">
+        <h2>Bemutatkozás</h2>
+        <p>
+            Ez a portfólió az iskolai munkáimat és szakmai fejlődésemet mutatja be.
+            Az alábbi évfolyamokra bontva találhatók meg a különböző tantárgyakhoz
+            tartozó dokumentumok, jegyzőkönyvek és projektek.
+        </p>
+    </section>
 
-    <div class="grid">
+    <section class="selector">
+        <h2>Válassz évfolyamot</h2>
 
-        <section class="year">
-            <h3><span>11.</span> Évfolyam</h3>
+        <select id="yearSelect">
+            <option value="">-- Válassz --</option>
+            <option value="11">11. évfolyam</option>
+            <option value="12">12. évfolyam</option>
+            <option value="13">13. évfolyam</option>
+        </select>
+    </section>
 
-            <div class="card" onclick="openPDF('meresi')">
-                <p>Mérési jegyzőkönyv</p>
-            </div>
+    <section id="subjects" class="subjects"></section>
 
-            <div class="card" onclick="openPDF('elektronika')">
-                <p>Elektronika</p>
-            </div>
-
-            <div class="card" onclick="openPDF('halo')">
-                <p>Hálózatkezelés</p>
-            </div>
-
-            <div class="card" onclick="openPDF('prog_alap')">
-                <p>Programozás alapjai</p>
-            </div>
-        </section>
-        <section class="year">
-            <h3><span>12.</span> Évfolyam</h3>
-
-            <div class="card" onclick="openPDF('adatbazis')">
-                <p>Adatbázis kezelés</p>
-            </div>
-
-            <div class="card" onclick="openPDF('mikro')">
-                <p>Mikrovezérlő programozás</p>
-            </div>
-
-            <div class="card" onclick="openPDF('plc')">
-                <p>PLC programozás</p>
-            </div>
-
-            <div class="card" onclick="openPDF('szamitogep')">
-                <p>Számítógépes szimuláció</p>
-            </div>
-        </section>
-
-        <section class="year">
-            <h3><span>13.</span> Évfolyam</h3>
-
-            <div class="card" onclick="openPDF('digitalis')">
-                <p>Digitális áramkörök</p>
-            </div>
-
-            <div class="card" onclick="openPDF('iot')">
-                <p>IoT rendszerek</p>
-            </div>
-
-            <div class="card" onclick="openPDF('prog')">
-                <p>Programfejlesztés</p>
-            </div>
-
-            <div class="card" onclick="openPDF('robot')">
-                <p>Robottechnika</p>
-            </div>
-        </section>
-
-    </div>
 </main>
+
+<!-- PDF -->
 <div id="pdfViewer" class="pdf">
     <button onclick="closePDF()">✕</button>
     <iframe id="frame"></iframe>
