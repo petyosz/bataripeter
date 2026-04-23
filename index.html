@@ -12,34 +12,60 @@
 
 <header class="hero">
     <img src="profil.jpg" class="pfp">
-
     <h1>Batári Péter</h1>
     <p>Ipari Informatikai Technikus</p>
+
+    <button class="cv-btn" onclick="openPDF('cv')">Önéletrajz</button>
 </header>
 
 <main class="container">
 
-    <section class="about">
-        <h2>Bemutatkozás</h2>
+    <section class="intro">
+        <h2>Portfólió</h2>
         <p>
-            Ez a portfólió az iskolai munkáimat és szakmai fejlődésemet mutatja be.
-            Az alábbi évfolyamokra bontva találhatók meg a különböző tantárgyakhoz
-            tartozó dokumentumok, jegyzőkönyvek és projektek.
+            Ez a portfólió az iskolai éveim során készült munkáimat tartalmazza.
+            Az egyes évfolyamok lenyithatók, és azon belül megtalálhatók a tantárgyakhoz tartozó dokumentumok.
         </p>
     </section>
 
-    <section class="selector">
-        <h2>Válassz évfolyamot</h2>
+    <!-- 11 -->
+    <div class="accordion">
+        <button class="accordion-btn">11. évfolyam</button>
+        <div class="accordion-content">
 
-        <select id="yearSelect">
-            <option value="">-- Válassz --</option>
-            <option value="11">11. évfolyam</option>
-            <option value="12">12. évfolyam</option>
-            <option value="13">13. évfolyam</option>
-        </select>
-    </section>
+            <div onclick="openPDF('BP_jegyzokonyv')">Mérési jegyzőkönyv</div>
+            <div onclick="openPDF('BP_elektronika')">Elektronika</div>
+            <div onclick="openPDF('BP_halozat')">Hálózatkezelés</div>
+            <div onclick="openPDF('BP_progam_alapjai')">Programozás alapjai</div>
 
-    <section id="subjects" class="subjects"></section>
+        </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="accordion">
+        <button class="accordion-btn">12. évfolyam</button>
+        <div class="accordion-content">
+
+            <div onclick="openPDF('BP_adatbazislezeées')">Adatbázis kezelés</div>
+            <div onclick="openPDF('BP_mikrovezerlo')">Mikrovezérlő programozás</div>
+            <div onclick="openPDF('BP_plc')">PLC programozás</div>
+            <div onclick="openPDF('szamitogep')">Számítógépes szimuláció</div>
+
+        </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="accordion">
+        <button class="accordion-btn">13. évfolyam</button>
+        <div class="accordion-content">
+
+            <div onclick="openPDF('digitalis')">Digitális áramkörök</div>
+            <div onclick="openPDF('iot')">IoT rendszerek</div>
+            <div onclick="openPDF('prog')">Programfejlesztés</div>
+            <div onclick="openPDF('robot')">Robottechnika</div>
+
+        </div>
+    </div>
 
 </main>
 
