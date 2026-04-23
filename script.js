@@ -17,19 +17,17 @@ const pdfMap = {
 function openPDF(key) {
     const file = pdfMap[key];
     if (!file) {
-        alert("RENDSZERÜZENET: A fájl nem található a szerveren.");
+        alert("A dokumentum hamarosan elérhető lesz.");
         return;
     }
-    document.getElementById("file-name").innerText = "FILE: " + file.toUpperCase();
+    document.getElementById("pdf-name").innerText = "FÁJL: " + file;
     document.getElementById("pdf-frame").src = "pdfs/" + file;
-    document.getElementById("pdf-overlay").style.display = "block";
-    document.body.style.overflow = "hidden";
+    document.getElementById("viewer").style.display = "block";
 }
 
 function closePDF() {
-    document.getElementById("pdf-overlay").style.display = "none";
+    document.getElementById("viewer").style.display = "none";
     document.getElementById("pdf-frame").src = "";
-    document.body.style.overflow = "auto";
 }
 
 document.addEventListener("keydown", (e) => {
