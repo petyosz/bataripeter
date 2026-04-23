@@ -4,77 +4,67 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Batári Péter | Portfólió</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="hero">
-    <div class="glass">
+    <img src="profil.jpg" class="pfp">
+    <h1>Batári Péter</h1>
+    <p>Ipari Informatikai Technikus</p>
 
-        <img src="profil.jpg" class="pfp">
-
-        <h1>Batári Péter</h1>
-        <p>Ipari Informatikai Technikus</p>
-
-        <button class="cv-btn" onclick="openPDF('cv')">
-            Önéletrajz megnyitása
-        </button>
-
-    </div>
+    <button onclick="openPDF('cv')" class="btn">Önéletrajz megnyitása</button>
 </header>
 
 <main class="container">
 
     <section class="intro">
-        <h2>Bemutatkozás</h2>
+        <h2>Portfólió</h2>
         <p>
-            Ez a portfólió az iskolai éveim során készült szakmai munkákat,
-            projektekhez kapcsolódó dokumentumokat és gyakorlati feladatokat tartalmazza.
+            Ez a weboldal az iskolai tanulmányaim során készült dokumentumokat és projektekhez kapcsolódó anyagokat tartalmazza.
+            Az évfolyamok szerint csoportosított tantárgyakban találhatók meg a PDF fájlok.
         </p>
     </section>
 
-    <!-- ACCORDIONS -->
-    <div class="accordion">
-
-        <div class="item">
-            <button class="acc-btn">11. évfolyam</button>
-            <div class="acc-content">
-                <div onclick="openPDF('meresi')">Mérési jegyzőkönyv</div>
-                <div onclick="openPDF('elektronika')">Elektronika</div>
-                <div onclick="openPDF('halo')">Hálózatkezelés</div>
-                <div onclick="openPDF('prog_alap')">Programozás alapjai</div>
-            </div>
+    <!-- 11 -->
+    <section class="box">
+        <button onclick="toggle(this)">11. évfolyam</button>
+        <div class="content">
+            <div onclick="openPDF('meresi')">Mérési jegyzőkönyv</div>
+            <div onclick="openPDF('elektronika')">Elektronika</div>
+            <div onclick="openPDF('halo')">Hálózatkezelés</div>
+            <div onclick="openPDF('prog_alap')">Programozás alapjai</div>
         </div>
+    </section>
 
-        <div class="item">
-            <button class="acc-btn">12. évfolyam</button>
-            <div class="acc-content">
-                <div onclick="openPDF('adatbazis')">Adatbázis kezelés</div>
-                <div onclick="openPDF('mikro')">Mikrovezérlő programozás</div>
-                <div onclick="openPDF('plc')">PLC programozás</div>
-                <div onclick="openPDF('szamitogep')">Számítógépes szimuláció</div>
-            </div>
+    <!-- 12 -->
+    <section class="box">
+        <button onclick="toggle(this)">12. évfolyam</button>
+        <div class="content">
+            <div onclick="openPDF('adatbazis')">Adatbázis kezelés</div>
+            <div onclick="openPDF('mikro')">Mikrovezérlő programozás</div>
+            <div onclick="openPDF('plc')">PLC programozás</div>
+            <div onclick="openPDF('szamitogep')">Számítógépes szimuláció</div>
         </div>
+    </section>
 
-        <div class="item">
-            <button class="acc-btn">13. évfolyam</button>
-            <div class="acc-content">
-                <div onclick="openPDF('digitalis')">Digitális áramkörök</div>
-                <div onclick="openPDF('iot')">IoT rendszerek</div>
-                <div onclick="openPDF('prog')">Programfejlesztés</div>
-                <div onclick="openPDF('robot')">Robottechnika</div>
-            </div>
+    <!-- 13 -->
+    <section class="box">
+        <button onclick="toggle(this)">13. évfolyam</button>
+        <div class="content">
+            <div onclick="openPDF('digitalis')">Digitális áramkörök</div>
+            <div onclick="openPDF('iot')">IoT rendszerek</div>
+            <div onclick="openPDF('prog')">Programfejlesztés</div>
+            <div onclick="openPDF('robot')">Robottechnika</div>
         </div>
-
-    </div>
+    </section>
 
 </main>
 
 <!-- PDF VIEWER -->
-<div id="pdfViewer" class="pdf">
-    <button onclick="closePDF()">✕</button>
+<div id="pdf" class="pdf">
+    <button onclick="closePDF()">Bezárás ✕</button>
     <iframe id="frame"></iframe>
 </div>
 
