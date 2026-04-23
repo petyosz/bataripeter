@@ -6,7 +6,7 @@
 
 body{
     font-family:Segoe UI, sans-serif;
-    background:#0a0a0a;
+    background:#0d0d0d;
     color:white;
 }
 
@@ -14,70 +14,78 @@ body{
 .hero{
     text-align:center;
     padding:60px 20px;
-    background:linear-gradient(135deg,#111,#1a1a1a);
+    background:linear-gradient(135deg,#111,#1c1c1c);
 }
 
 .pfp{
-    width:130px;
-    height:130px;
+    width:140px;
+    height:140px;
     border-radius:50%;
     border:3px solid #ff8c00;
     object-fit:cover;
-    margin-bottom:15px;
+}
+
+.hero h1{
+    margin-top:15px;
+}
+
+.hero p{
+    opacity:0.8;
+}
+
+.cv-btn{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#ff8c00;
+    border:none;
+    cursor:pointer;
 }
 
 /* MAIN */
 .container{
-    max-width:800px;
+    max-width:700px;
     margin:auto;
     padding:40px 20px;
 }
 
-/* ABOUT */
-.about{
-    margin-bottom:40px;
-}
-
-.about h2{
-    margin-bottom:10px;
-    color:#ff8c00;
-}
-
-.about p{
-    line-height:1.6;
-    opacity:0.8;
-}
-
-/* SELECTOR */
-.selector{
+/* INTRO */
+.intro{
     margin-bottom:30px;
 }
 
-.selector select{
+.intro h2{
+    color:#ff8c00;
+    margin-bottom:10px;
+}
+
+/* ACCORDION */
+.accordion{
+    margin-bottom:15px;
+}
+
+.accordion-btn{
     width:100%;
-    padding:12px;
-    background:#111;
-    border:1px solid #333;
+    padding:15px;
+    background:#1a1a1a;
+    border:none;
+    text-align:left;
     color:white;
+    cursor:pointer;
     font-size:16px;
 }
 
-/* SUBJECTS */
-.subjects{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.item{
-    padding:15px;
+.accordion-content{
+    display:none;
     background:#111;
-    border:1px solid #222;
-    cursor:pointer;
-    transition:0.2s;
 }
 
-.item:hover{
+.accordion-content div{
+    padding:15px;
+    border-top:1px solid #222;
+    cursor:pointer;
+}
+
+.accordion-content div:hover{
     background:#ff8c00;
     color:black;
 }
